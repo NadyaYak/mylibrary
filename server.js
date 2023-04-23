@@ -24,7 +24,7 @@ mongoose.connection.once('open', () => {
 
 app.use('/', indexRouter)
 app.use('/authors', authorRouter)
-'authors/new'
+
 
 
 
