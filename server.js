@@ -5,6 +5,8 @@ const expressLayouts = require('express-ejs-layouts')
 const mongoose = require("mongoose");
 
 const indexRouter =require('./routes/index')
+const authorRouter =require('./routes/authors')
+
 app.set('view engine','ejs')
 app.set('views', __dirname + '/views')
 app.set('layout', 'layouts/layout')
@@ -21,6 +23,8 @@ mongoose.connection.once('open', () => {
 
 
 app.use('/', indexRouter)
+app.use('/authors', authorRouter)
+'authors/new'
 
 
 
