@@ -21,3 +21,24 @@ value="<%= book.publishDate == null ? '' :
 book.publishDate.toISIString().split('T') [0] %>">
 </div>
 
+<div>
+    <label>Page Count</label>
+    <input type="number" name="pageCount"  min="1"
+    value="<%= book.pageCount %>">
+</div>
+
+
+<div>
+    <label>Cover</label>
+    <input type="file" name="cover"  >
+
+</div>
+
+
+<div>
+    <label>Description</label>
+    <itextarea name="description"><%= book.description %>
+    </itextarea>
+   
+</div>
+

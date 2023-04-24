@@ -24,6 +24,7 @@ try {
 
 //Create Book Route
 router.post('/', async (req,res) => {
+    const book = new Book
 res.send('Create Book')
 
 })
