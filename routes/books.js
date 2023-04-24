@@ -25,7 +25,10 @@ try {
 //Create Book Route
 router.post('/', async (req,res) => {
     const book = new Book({
-        title:req
+        title:req.body.title,
+        author: req.body.author,
+        publishDate: new Date(req.body.publishDate)
+        
     })
 
 
