@@ -20,14 +20,14 @@ const bookSchema = new mongoose.Schema({
     createAt: {
     type:Date,
     required: true,
-    default:Date.now
+    default: Date.now
 },
     coverImageName:{
         type:String, 
         required:true
     },
     author:{
-        type: mongoose.Schema.Yypes.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Author'
     }
