@@ -9,7 +9,7 @@ const imageMimeTypes = ['image/jpeg', 'image/png','image/gif']
 const upload =multer({
     dest: uploadPath,
     fileFilter:(req, file, callback) => {
-        
+        callback(null, imageMimeTypes.includes(file.mimetype))
     }
 })
 //All Books Route
@@ -32,7 +32,7 @@ try {
 })
 
 //Create Book Route
-router.post('/', async (req,res) => {
+router.post('/', upload.singleasync (req,res) => {
     const book = new Book({
         title:req.body.title,
         author: req.body.author,
