@@ -24,8 +24,10 @@ try {
 
 //Create Book Route
 router.post('/', async (req,res) => {
-    const book = new Book
-res.send('Create Book')
+    const book = new Book({
+        title:req
+    })
+
 
 })
 module.exports = router
