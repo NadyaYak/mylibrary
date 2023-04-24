@@ -23,7 +23,7 @@ try {
 })
 
 //Create Book Route
-router.post('/',async (req,res) =>{
+router.post('/', async (req,res) => {
 res.send('Create Book')
 
 })
