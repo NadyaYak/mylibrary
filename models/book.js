@@ -1,9 +1,18 @@
 const mongoose=require('mongoose')
 
 const bookSchema = new mongoose.Schema({
-    name:{
+    title:{
         type: String,
         required: true
+    },
+    description:{
+        type:String,
+
+    publishDate: {
+       type: Date,
+       required:true
+    },
+    pageCount:
     }
 })
 
