@@ -15,8 +15,15 @@ const upload =multer({
 })
 //All Books Route
 router.get('/', async (req,res) =>{
+let query = Book.find()
+    if (req.query.title !=null && req.query.title != ''){
+        query =query.regex('title',new RegExp(req.query.title, 'i'))
+    }
+    if (req.query.publishedBefore !=null && req.query.publishedBefore != ''){
+        query =query.('title',new RegExp(req.query.title, 'i'))
+    }
 try {
-    const books =  await Book.find({})
+    const books =  await query.exec()
     res.render('books/index', {
         books: books,
         searchOptions: req.query
