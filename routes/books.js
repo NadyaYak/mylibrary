@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 const path = require('path')
+const fs = require('fs')
 const Book = require('../models/book')
 const Author = require('../models/author')
 const uploadPath = path.join('public', Book.coverImageBasePath)
@@ -14,7 +15,17 @@ const upload =multer({
 })
 //All Books Route
 router.get('/', async (req,res) =>{
- res.send('All books')
+try {
+    const books = Book.find({})
+    res.render('books/index', {
+        books: books,
+        searchOptions: req.query
+     })
+
+} catch {
+res.redirect('/')
+}
+
 })
 
 //New Book Route
@@ -38,10 +49,18 @@ try {
     //res.redirect(`books/${newBook.id}`)
     res.redirect(`books`)
 } catch {
+    if (book.coverImageName ! = null) {
+    removeBookCover(book.coverImageName)
+
+    }
     renderNewPage(res,book,true)
 }
 })
-
+function removeBookCover (fileName) {
+    fs.unlink(path.join(uploadPath, fileName), err =>{
+        if (err) console.error(err)
+    })
+}
 async function renderNewPage(res, book, hasError =false) {
     try {
         const authors = await Author.find({})
