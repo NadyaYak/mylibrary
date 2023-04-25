@@ -16,7 +16,7 @@ const upload =multer({
 //All Books Route
 router.get('/', async (req,res) =>{
 try {
-    const books = Book.find({})
+    const books =  await Book.find({})
     res.render('books/index', {
         books: books,
         searchOptions: req.query
@@ -49,7 +49,7 @@ try {
     //res.redirect(`books/${newBook.id}`)
     res.redirect(`books`)
 } catch {
-    if (book.coverImageName ! = null) {
+    if (book.coverImageName != null) {
     removeBookCover(book.coverImageName)
 
     }
