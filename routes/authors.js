@@ -19,10 +19,14 @@ res.redirect('/')
 }
 })
 
+
+
 //New Author Route
 router.get('/new',(req,res) =>{
     res.render('authors/new',{ author: new Author()  })
 })
+
+
 
 //Create Author Route
 router.post('/',async (req,res) =>{
@@ -42,9 +46,14 @@ res.redirect(`authors/${newAuthor.id}`)
 
 })
 
+
 router.get('/:id', (req, res) => {
     res.send('Show Author' + req.params.id)
 })
+
+
+
+
 
 router.get('/:id/edit',  async (req, res) =>{
     try {
