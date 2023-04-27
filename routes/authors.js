@@ -51,6 +51,7 @@ router.get('/:id/edit',  async (req, res) =>{
 const author =  await Author.findById(req.params.id)
   
     res.render('authors/edit',{ author: author })
+
 } catch{
 res.redirect('/authors')
 
@@ -63,10 +64,11 @@ router.put('/:id',async (req,res) =>{
   let author
     try {
         author = await Author.findById(req.params.id)
+        author.name = req.body.name
           await author.save()
- res.redirect(`authors/${author.id}`)
+        res.redirect(`/authors/${author.id}`)
 
-    } catch {
+      } catch {
         if (author == null) {
             res.redirect('/')
         } else{
@@ -76,16 +78,30 @@ router.put('/:id',async (req,res) =>{
             errorMessage: 'Error updating Author'
         })  
     }
-    }
-
+ }
 })
 
 
 
 
 
-router.delete('/:id', (req, res) => {
-    res.send('Delete Author' + req.params.id)
+router.delete('/:id', async (req, res) => {
+    let author
+    try {
+        author = await Author.findById(req.params.id)
+          await author.remove()
+        res.redirect('/authors/')
+
+      } catch {
+        if (author == null) {
+            res.redirect('/')
+        } else{
+        
+        res.redirect(`/authors/${author.id}`)
+        
+    }
+ }
+
 })
 
 
